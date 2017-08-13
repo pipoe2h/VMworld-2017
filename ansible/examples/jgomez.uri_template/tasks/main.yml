@@ -1,0 +1,22 @@
+---
+- name: API call
+  uri:
+    url: https://{{ inventory_hostname }}/api/aaaLogin.json?gui-token-request=yes
+    method: POST
+    headers:
+      Content-Type: "application/json"
+    validate_certs: no
+    return_content: yes
+    status_code: 200
+    body_format: json
+    body: >
+            {
+              "aaaUser": {
+                "attributes": {
+                  "name": "{{username}}",
+                  "pwd": "{{password}}"
+                }
+              }
+            }
+  register: login
+  no_log: true
