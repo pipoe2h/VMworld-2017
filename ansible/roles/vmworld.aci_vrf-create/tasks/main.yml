@@ -1,0 +1,19 @@
+---
+- name: ACI - Creating VRF
+  uri:
+    url: https://{{ inventory_hostname }}/api/node/mo/uni/tn-{{ tenant_name }}/ctx-{{ vrf_name }}.json
+    method: POST
+    headers:
+      Cookie: "APIC-cookie={{ token }}"
+      APIC-challenge: "{{ urlToken }}"
+    validate_certs: no
+    body_format: json
+    body: >
+      {
+        "fvCtx": {
+                "attributes": {
+                        "name": "{{ vrf_name }}",
+                },
+        }
+      }
+  register: vrf
