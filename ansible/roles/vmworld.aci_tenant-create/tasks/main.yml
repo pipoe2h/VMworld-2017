@@ -1,7 +1,7 @@
 ---
-- name: ACI - Creating VRF
+- name: Cisco ACI - Creating new tenant
   uri:
-    url: https://{{ inventory_hostname }}/api/node/mo/uni/tn-{{ item.tenant_name }}/ctx-{{ item.vrf_name }}.json
+    url: https://{{ inventory_hostname }}/api/node/mo/uni/tn-{{ item.tenant_name }}.json
     method: POST
     headers:
       Cookie: "{{ token }}"
@@ -10,12 +10,12 @@
     body_format: json
     body: >
       {
-        "fvCtx": {
+        "fvTenant": {
                 "attributes": {
-                        "name": "{{ item.vrf_name }}",
+                        "name": "{{ item.tenant_name }}",
                 },
         }
       }
-  register: vrf
+  register: tenant
   with_items:
-    - "{{ aci_vrf }}"
+    - "{{ aci_tenant }}"

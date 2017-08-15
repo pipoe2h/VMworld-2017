@@ -1,0 +1,22 @@
+---
+- name: Cisco ACI - Authenticating
+  uri:
+    url: https://{{ inventory_hostname }}/api/aaaLogin.json?gui-token-request=yes
+    method: POST
+    validate_certs: no
+    body_format: json
+    body: >
+            {
+              "aaaUser": {
+                "attributes": {
+                  "name": "{{ lookup('env', 'APIC_USERNAME') }}",
+                  "pwd": "{{ lookup('env', 'APIC_PASSWORD') }}"
+                }
+              }
+            }
+  register: login
+  no_log: true
+
+- set_fact:
+    token: "APIC-cookie={{ login.json.imdata[0].aaaLogin.attributes.token }}"
+    urlToken: "{{ login.json.imdata[0].aaaLogin.attributes.urlToken }}"
