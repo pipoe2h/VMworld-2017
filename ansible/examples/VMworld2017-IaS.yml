@@ -1,0 +1,9 @@
+aci_tenant:
+  - tenant_name: VMworld2017US
+  - tenant_name: VMworld2017EU
+
+aci_vrf:
+  - vrf_name: VMworld2017US
+    tenant_name: VMworld2017US
+  - vrf_name: VMworld2017EU
+    tenant_name: VMworld2017EU
