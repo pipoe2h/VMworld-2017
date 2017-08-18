@@ -4,7 +4,6 @@
     url: https://{{ inventory_hostname }}/api/
     method: POST
     headers:
-      Content-Type: "application/json"
       Cookie: "{{ token }}"
       APIC-challenge: "{{ urlToken }}"
     validate_certs: no
