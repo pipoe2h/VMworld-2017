@@ -1,0 +1,7 @@
+---
+- name: VMworld 2017 demo
+  hosts: apic
+  connection: local
+  roles:
+    - vmworld.aci_login
+    - vmworld.aci_vrf-create

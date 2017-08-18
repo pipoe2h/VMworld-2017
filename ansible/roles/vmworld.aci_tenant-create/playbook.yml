@@ -1,6 +1,0 @@
----
-- name: Example to run a role
-  hosts: apic
-  connection: local
-  roles:
-    - jgomez.uri_template
