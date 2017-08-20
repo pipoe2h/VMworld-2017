@@ -14,11 +14,11 @@ This demo shows the end to end about:
 * The second API call called "List Tenants" retrieves the Cisco ACI tenants available. This call uses the tokens stored in the previous step as headers: ***Cookie: APIC-cookie=token***, and ***APIC-challenge: urlToken***.
 ### Ansible Automation server
 * Clone this repo in your Ansible server.
-```bash
+```shell
 git clone https://github.com/pipoe2h/VMworld-2017.git
 ```
 * Navigate to the ansible folder and edit the hosts file with your APIC address.
-```bash
+```shell
 cd VMworld-2017/ansible
 ```
 * The examples folder give you a role template you can use as a baseline for your future roles, and a configuration file called VMworld2017-IaC.yml with the definition of the Cisco ACI objects (Infrastructure as Code) to create on our requests.
@@ -35,19 +35,19 @@ aci_vrf:
 ```
 * The roles folder includes two pre-created roles for authentication and VRF creation:
   - The authentication role requires the environment variables ***APIC_USERNAME*** and ***APIC_PASSWORD***.
-  ```bash
+  ```shell
   export APIC_USERNAME=<aci_user> APIC_PASSWORD=<aci_user_password>
   ```
   - The VRF role has the dependency of an ACI tenant, since we don't have any (despite the default ones) we will create a new Ansible role called ***vmworld.aci_tenant-create*** to meet the tenant dependency.
-  ```bash
+  ```shell
   ansible-galaxy init vmworld.aci_tenant-create --offline -p roles
   ```
 * Overwrite the tasks file main.yml in the ***vmworld.aci_tenant-create*** role with the tasks file main.yml from the ***vmworld.aci_vrf-create role***
-```bash
+```shell
 cp roles/vmworld.aci_vrf-create/tasks/main.yml roles/vmworld.aci_tenant-create/tasks/main.yml
 ```
 * Edit the tasks file main.yml for the ***vmworld.aci_tenant-create*** role and replace as shown below. (Note: the URL and body have been captured using the *API Inspector* feature in ACI. Open the *API Inspector* and trigger the creation of a new ACI tenant, in the Inspector window you will be able to see the POST request with the URL and Payload values)
-```bash
+```shell
 vim roles/vmworld.aci_tenant-create/tasks/main.yml
 ```
 ``` yaml
