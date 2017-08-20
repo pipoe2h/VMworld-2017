@@ -42,6 +42,37 @@ aci_vrf:
   ```bash
   ansible-galaxy init vmworld.aci_tenant-create --offline -p roles
   ```
+* Overwrite the tasks file main.yml in the ***vmworld.aci_tenant-create*** role with the tasks file main.yml from the ***vmworld.aci_vrf-create role***
+```bash
+cp roles/vmworld.aci_vrf-create/tasks/main.yml roles/vmworld.aci_tenant-create/tasks/main.yml
+```
+* Edit the tasks file main.yml for the ***vmworld.aci_tenant-create*** role and replace as shown below. (Note: the URL and body have been captured using the *API Inspector* feature in ACI. Open the *API Inspector* and trigger the creation of a new ACI tenant, in the Inspector window you will be able to see the POST request with the URL and Payload values)
+```bash
+vim roles/vmworld.aci_tenant-create/tasks/main.yml
+```
+``` yaml
+---
+- name: ACI - Creating Tenant
+  uri:
+    url: https://{{ inventory_hostname }}/api/mo/uni.json
+    method: POST
+    headers:
+      Cookie: "{{ token }}"
+      APIC-challenge: "{{ urlToken }}"
+    validate_certs: no
+    body_format: json
+    body: >
+      {
+        "fvTenant": {
+                "attributes": {
+                        "name": "{{ item.tenant_name }}",
+                },
+        }
+      }
+  register: tenant
+  with_items:
+    - "{{ aci_tenant }}"
+```
 ### VMware vRealize Orchestrator
 ### VMware vRealize Automation
 
