@@ -10,19 +10,19 @@
     body_format: json
     body: >
       {
-	"fvAEPg": {
-		"attributes": {
-			"name": "{{ item.epg_name }}"
-		},
-		"children": [{
-				"fvRsBd": {
-					"attributes": {
-						"tnFvBDName": "{{ item.bd_name }}"
-					}
-				}
-			}
-		]
-	}
+        "fvAEPg": {
+                  "attributes": {
+                        "name": "{{ item.epg_name }}"
+                  },
+                "children": [{
+                                "fvRsBd": {
+                                          "attributes": {
+                                                "tnFvBDName": "{{ item.bd_name }}"
+                                          }
+                                }
+                  }
+                ]
+        }
       }
   register: epg
   with_items:

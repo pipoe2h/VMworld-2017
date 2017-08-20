@@ -10,11 +10,11 @@
     body_format: json
     body: >
       {
-	"fvRsDomAtt": {
-		"attributes": {
-			"tDn": "uni/vmmp-VMware/dom-{{ item.vmm_name }}"
-		}
-	}
+        "fvRsDomAtt": {
+                "attributes": {
+                        "tDn": "uni/vmmp-VMware/dom-{{ item.vmm_name }}"
+                }
+        }
       }
   register: vmm
   with_items:

@@ -10,25 +10,25 @@
     body_format: json
     body: >
       {
-	"fvBD": {
-		"attributes": {
-			"name": "{{ item.bd_name }}",
-		},
-		"children": [{
-				"fvSubnet": {
-					"attributes": {
-						"ip": "{{ item.bd_gateway }}"
-					},
-				}
-			}, {
-				"fvRsCtx": {
-					"attributes": {
-						"tnFvCtxName": "{{ item.vrf_name }}"
-					},
-				}
-			}
-		]
-	}
+        "fvBD": {
+                "attributes": {
+                        "name": "{{ item.bd_name }}"
+                },
+                "children": [{
+                                "fvSubnet": {
+                                        "attributes": {
+                                                "ip": "{{ item.bd_gateway }}"
+                                        }
+                                }
+                        }, {
+                                "fvRsCtx": {
+                                        "attributes": {
+                                                "tnFvCtxName": "{{ item.vrf_name }}"
+                                        }
+                                }
+                        }
+                ]
+        }
       }
   register: bd
   with_items:

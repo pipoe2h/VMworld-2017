@@ -10,11 +10,11 @@
     body_format: json
     body: >
       {
-	"fvAp": {
-		"attributes": {
-			"name": "{{ item.app_name }}",
-		},
-	}
+        "fvAp": {
+                "attributes": {
+                              "name": "{{ item.app_name }}"
+                }
+        }
       }
   register: app
   with_items:
