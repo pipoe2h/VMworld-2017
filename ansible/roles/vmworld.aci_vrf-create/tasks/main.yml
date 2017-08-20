@@ -12,7 +12,7 @@
       {
         "fvCtx": {
                 "attributes": {
-                        "name": "{{ item.vrf_name }}",
+                        "name": "{{ item.vrf_name }}"
                 },
         }
       }

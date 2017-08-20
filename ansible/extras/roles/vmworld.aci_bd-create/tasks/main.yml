@@ -1,0 +1,35 @@
+---
+- name: Cisco ACI - Creating Bridge Domain
+  uri:
+    url: https://{{ inventory_hostname }}/api/node/mo/uni/tn-{{ item.tenant_name }}/BD-{{ item.bd_name }}.json
+    method: POST
+    headers:
+      Cookie: "{{ token }}"
+      APIC-challenge: "{{ urlToken }}"
+    validate_certs: no
+    body_format: json
+    body: >
+      {
+	"fvBD": {
+		"attributes": {
+			"name": "{{ item.bd_name }}",
+		},
+		"children": [{
+				"fvSubnet": {
+					"attributes": {
+						"ip": "{{ item.bd_gateway }}"
+					},
+				}
+			}, {
+				"fvRsCtx": {
+					"attributes": {
+						"tnFvCtxName": "{{ item.vrf_name }}"
+					},
+				}
+			}
+		]
+	}
+      }
+  register: bd
+  with_items:
+    - "{{ aci_bd }}"

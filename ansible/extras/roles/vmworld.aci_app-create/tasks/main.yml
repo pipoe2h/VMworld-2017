@@ -1,0 +1,21 @@
+---
+- name: Cisco ACI - Creating Application Profile
+  uri:
+    url: https://{{ inventory_hostname }}/api/node/mo/uni/tn-{{ item.tenant_name }}/ap-{{ item.app_name }}.json
+    method: POST
+    headers:
+      Cookie: "{{ token }}"
+      APIC-challenge: "{{ urlToken }}"
+    validate_certs: no
+    body_format: json
+    body: >
+      {
+	"fvAp": {
+		"attributes": {
+			"name": "{{ item.app_name }}",
+		},
+	}
+      }
+  register: app
+  with_items:
+    - "{{ aci_app }}"

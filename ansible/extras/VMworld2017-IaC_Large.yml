@@ -1,0 +1,50 @@
+aci_tenant:
+  - tenant_name: VMWORLD2018
+
+aci_vrf:
+  - vrf_name: PUBLIC
+    tenant_name: VMWORLD2018
+  - vrf_name: PRIVATE
+    tenant_name: VMWORLD2018
+
+aci_bd:
+  - bd_name: DMZ
+    bd_gateway: 192.168.0.1/24
+    vrf_name: PUBLIC
+    tenant_name: VMWORLD2018
+  - bd_name: INTERNAL
+    bd_gateway: 10.0.0.1/24
+    vrf_name: PRIVATE
+    tenant_name: VMWORLD2018
+
+aci_app:
+  - app_name: VMWORLD2018_HOL
+    tenant_name: VMWORLD2018
+
+aci_epg:
+  - epg_name: WEB
+    app_name: VMWORLD2018_HOL
+    bd_name: DMZ
+    tenant_name: VMWORLD2018
+  - epg_name: APP
+    app_name: VMWORLD2018_HOL
+    bd_name: INTERNAL
+    tenant_name: VMWORLD2018
+  - epg_name: DB
+    app_name: VMWORLD2018_HOL
+    bd_name: INTERNAL
+    tenant_name: VMWORLD2018
+
+aci_vmm:
+  - vmm_name: VMM_HOMELAB
+    epg_name: WEB
+    app_name: VMWORLD2018_HOL
+    tenant_name: VMWORLD2018
+  - vmm_name: VMM_HOMELAB
+    epg_name: APP
+    app_name: VMWORLD2018_HOL
+    tenant_name: VMWORLD2018
+  - vmm_name: VMM_HOMELAB
+    epg_name: DB
+    app_name: VMWORLD2018_HOL
+    tenant_name: VMWORLD2018

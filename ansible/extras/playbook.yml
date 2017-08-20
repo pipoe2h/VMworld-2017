@@ -1,0 +1,12 @@
+---
+- name: VMworld 2017 demo
+  hosts: apic
+  connection: local
+  roles:
+    - vmworld.aci_login
+    - vmworld.aci_tenant-create
+    - vmworld.aci_vrf-create
+    - vmworld.aci_bd-create
+    - vmworld.aci_app-create
+    - vmworld.aci_epg-create
+    - vmworld.aci_epg-vmm-add

@@ -1,0 +1,29 @@
+---
+- name: Cisco ACI - Creating Endpoint Group
+  uri:
+    url: https://{{ inventory_hostname }}/api/node/mo/uni/tn-{{ item.tenant_name }}/ap-{{ item.app_name }}/epg-{{ item.epg_name }}.json
+    method: POST
+    headers:
+      Cookie: "{{ token }}"
+      APIC-challenge: "{{ urlToken }}"
+    validate_certs: no
+    body_format: json
+    body: >
+      {
+	"fvAEPg": {
+		"attributes": {
+			"name": "{{ item.epg_name }}"
+		},
+		"children": [{
+				"fvRsBd": {
+					"attributes": {
+						"tnFvBDName": "{{ item.bd_name }}"
+					}
+				}
+			}
+		]
+	}
+      }
+  register: epg
+  with_items:
+    - "{{ aci_epg }}"

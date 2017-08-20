@@ -1,0 +1,21 @@
+---
+- name: Cisco ACI - Adding VMM domain to EPG {{ item.epg_name }}
+  uri:
+    url: https://{{ inventory_hostname }}/api/node/mo/uni/tn-{{ item.tenant_name }}/ap-{{ item.app_name }}/epg-{{ item.epg_name }}.json
+    method: POST
+    headers:
+      Cookie: "{{ token }}"
+      APIC-challenge: "{{ urlToken }}"
+    validate_certs: no
+    body_format: json
+    body: >
+      {
+	"fvRsDomAtt": {
+		"attributes": {
+			"tDn": "uni/vmmp-VMware/dom-{{ item.vmm_name }}"
+		}
+	}
+      }
+  register: vmm
+  with_items:
+    - "{{ aci_vmm }}"
