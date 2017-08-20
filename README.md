@@ -92,8 +92,11 @@ vim playbook.yml
 ansible-playbook playbook.yml -e @examples/VMworld2017-IaC.yml
 ```
 ### VMware vRealize Orchestrator
+* You can download the vRO package with the used workflows from the resources section.
+* The workflow is quite simple. This is a wrapper with the ***Run SSH command*** workflow available out-of-the-box in vRO, and a script file where we capture three inputs to produce the SSH command to execute.
 ### VMware vRealize Automation
 
 ## Resources
 * [Postman VMworld 2017 Collection](https://documenter.getpostman.com/view/911382/vmworld-2017/6n5zCzu)
+* [VMware vRealize Orchestrator vmworld2017eu package]()
 * [Cisco APIC Rest API Configuration Guide Book](https://www.cisco.com/c/en/us/td/docs/switches/datacenter/aci/apic/sw/2-x/rest_cfg/2_1_x/b_Cisco_APIC_REST_API_Configuration_Guide.pdf)
