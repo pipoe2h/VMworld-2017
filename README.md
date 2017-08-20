@@ -73,6 +73,24 @@ vim roles/vmworld.aci_tenant-create/tasks/main.yml
   with_items:
     - "{{ aci_tenant }}"
 ```
+* Update the **playbook.yml** file in the ansible folder and include the new role.
+```shell
+vim playbook.yml
+```
+```yaml
+---
+- name: VMworld 2017 demo
+  hosts: apic
+  connection: local
+  roles:
+    - vmworld.aci_login
+    - vmworld.aci_tenant-create
+    - vmworld.aci_vrf-create
+```
+* Now that we have all the pieces, you can run the Ansible playbook passing the VMworld2017-IaC.yml configuration file as extra vars.
+```shell
+ansible-playbook playbook.yml -e @examples/VMworld2017-IaC.yml
+```
 ### VMware vRealize Orchestrator
 ### VMware vRealize Automation
 
