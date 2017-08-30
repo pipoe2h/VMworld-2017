@@ -95,6 +95,7 @@ ansible-playbook playbook.yml -e @examples/VMworld2017-IaC.yml
 * You can download the vRO package with the used workflows from the resources section.
 * The workflow is quite simple. This is a wrapper with the ***Run SSH command*** workflow available out-of-the-box in vRO, and a script file where we capture three inputs to produce the SSH command to execute.
 ### VMware vRealize Automation
+* Create a XaaS blueprint for the vRO workflow above and publish that into your vRA service catalogue.
 
 ## Resources
 * [Postman VMworld 2017 Collection](https://documenter.getpostman.com/view/911382/vmworld-2017/6n5zCzu)
