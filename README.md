@@ -1,6 +1,8 @@
 # VMworld-2017
 This repository includes all the content used for the Tech Talk "Automating and Integrating Cisco ACI with VMware vRA using Ansible" in VMworld 2017 Europe
 
+[![vBrownbag session - VMworld Europe 2017](https://img.youtube.com/vi/Tz-XgxHtJ3c/0.jpg)](https://www.youtube.com/watch?v=Tz-XgxHtJ3c)
+
 ## Demo
 This demo shows the end to end about:
 * How to use Postman to run API calls against Cisco ACI or any other API (Cisco ACI API calls are available in the resources section.
